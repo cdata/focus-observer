@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2015 Chris Joel (MIT Licensed)
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FocusObserver Demo</title>
+  </head>
+  <body>
+    <template id="x-button-item-template">
+      <style>
+        :host {
+          display: inline-block;
+          position: relative;
+          padding: 0.5em;
+          margin: 0.5em;
+
+          background-color: #eee;
+
+          cursor: pointer;
+        }
+
+        :host(:focus) {
+          background-color: #fff;
+        }
+
+        button:focus {
+          font-weight: bold;
+        }
+      </style>
+      <button id="DoubleDeep"><content></content></button>
+    </template>
+    <template id="x-menu-template">
+      <style>
+        :host {
+          display: inline-block;
+          position: relative;
+          padding: 0.5em;
+          margin: 0.5em;
+
+          background-color: #aaa;
+        }
+
+        :host(:focus) {
+          background-color: #ccc;
+        }
+
+        h3 {
+          margin: 0;
+          padding: 0;
+        }
+
+        ul {
+          display: inline-block;
+          position: relative;
+          margin: 0;
+          padding: 0;
+        }
+
+        li {
+          display: inline-block;
+          position: relative;
+          padding: 0.5em;
+          margin: 0.5em;
+
+          background-color: #eee;
+
+          cursor: pointer;
+        }
+
+        li:focus {
+          background-color: #fff;
+        }
+
+        button:focus {
+          font-weight: bold;
+        }
+      </style>
+      <h3>Menu</h3>
+      <ul>
+        <li tabindex="0" id="MenuChild1">
+          <button id="Deep">Shadow Button</button>
+        </li>
+        <x-button-item tabindex="0" tabstop="false" id="MenuChild2">Two Shadows Deep</x-button-item>
+        <li tabindex="0" id="MenuChild3">Shadow Item</li>
+      </ul>
+    </template>
+
+    <section>
+      <h2>Document Focus State</h2>
+      <pre id="FocusedElement">None</pre>
+    </section>
+
+    <section>
+      <h2>Sibling Menus</h2>
+      <x-menu id="XMenu1" tabindex="0"></x-menu>
+      <x-menu id="XMenu2" tabindex="0"></x-menu>
+    </section>
+
+    <section>
+      <h2>Mutating Menu</h2>
+      <x-menu id="XMenu3" tabindex="0"></x-menu>
+    </section>
+
+    <script src="../focus-observer.js"></script>
+    <script src="demo.js"></script>
+    <script>
+      var focusObserver = new FocusObserver(UpdateAnalysis);
+      focusObserver.observe();
+    </script>
+  </body>
+</html>
