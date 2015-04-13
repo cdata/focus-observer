@@ -175,7 +175,7 @@
       this.updateStateTimer = window.setTimeout(function () {
         this.updateStateTimer = null;
         this.updateState();
-      }.bind(this), 50);
+      }.bind(this), 0);
     },
 
     onFocus: function () {
